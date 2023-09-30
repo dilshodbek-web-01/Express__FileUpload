@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+
+<body>
+    <ul id="list"></ul>
+    <button class="btn">delete</button>
+    <script>
+        (async () => {
+            const users = await fetch("http://localhost:4444/users");
+            const newUsers = await users.json();
+            for (let user of newUsers) {
+                console.log(newUsers);
+                console.log(user.imagePath);
+                const li = `<li>
+                    <p>${user.username}</p>
+                    <img src=${user.imagePath} alt="">
+                    </li>`
+                list.innerHTML += li;
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
